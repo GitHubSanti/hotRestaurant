@@ -36,6 +36,29 @@ app.get("/tables", function(req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 })
 
+app.get("/api/isreservelistfull", function(req, res) {
+  if(reservations.length >= 5) {
+    return res.json(true);
+  }
+  else {
+    return res.json(false);
+  }
+});
+
+app.post("/api/tables", function(req, res) {
+  var newReservation = req.body;
+  reservations.push(newReservation);
+  console.log(reservations);
+  res.json(newReservation);
+});
+
+app.post("/api/waitlist", function(req, res) {
+  var newWaiting = req.body;
+  waiting.push(newWaiting);
+  console.log(waiting);
+  res.json(newWaiting);
+});
+
 // Listener
 // ===========================================================
 app.listen(PORT, function() {
