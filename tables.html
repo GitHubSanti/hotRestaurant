@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tables Page</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1><div class="text-center"><span class="glyphicon glyphicon-fire"></span>Hot Restaurant</div></h1>
+      <hr>
+      <h2><div class="text-center">Current Reservations and Waiting List</div></h2>
+      <br>
+      <div class= "text-center"><a href="reserve.html"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button></a>
+        <a href="view.html"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
+    </div>
+      
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+          <!-- reservation panel -->
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <div class="panel-title"><h4>Current Reservations</h4></div>
+              </div>
+
+              <div class="panel-body" id="tableSection">
+                  <div class="well" id="tabelwell">
+                      <!-- javascript stuff -->
+                  </div>
+              </div>
+          </div>
+
+          <!-- wait list panel -->
+
+          <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title"><h4>Waiting List</h4></div>
+                </div>
+  
+                <div class="panel-body" id="waitlistSection">
+                    <div class="well" id="tabelwell">
+                        <!-- javascript stuff -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="footer">
+      <div class="container">
+          <p>Control Panel</p>
+          <p>
+              <a href="#" id="clear">Clear Table</a> 
+              | 
+              <a href="" id="clear">API Table Link</a> 
+              | 
+              <a href="" id="clear">API Wait List</a> 
+          </p>
+      </div>
+  </footer>
+  <!-- starwars game javascript -->
+
+  <script type="text/javascript">
+    $("#search-btn").on("click", function() {
+      var searchedCharacter = $("#character-search").val().trim();
+
+      // Using a RegEx Pattern to remove spaces from searchedCharacter
+      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+      $.get("/api/characters/" + searchedCharacter, function(data) {
+        console.log(data);
+        if (data) {
+          $("#stats").show();
+          $("#name").text(data.name);
+          $("#role").text(data.role);
+          $("#age").text(data.age);
+          $("#force-points").text(data.forcePoints);
+        }
+        else {
+          $("#name").text("The force is not strong with this one. Your character was not found.");
+          $("#stats").hide();
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
