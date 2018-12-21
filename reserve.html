@@ -53,7 +53,7 @@
                     </div>             
             </form>
             <!--Submit Button-->
-            <button type="button" class="btn btn-primary">Submit</button>            
+            <button type="button" class="btn btn-primary" id="submitReservation">Submit</button>            
                 </div>
             </div>
         </div>
@@ -66,5 +66,28 @@
     </footer>
     
     </div>
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#submitReservation").on("click", function(event) {
+          event.preventDefault();
+    
+          var newEntity = {
+            name: $("#name").val().trim(),
+            phonenumber: $("#phonenumber").val().trim(),
+            email: $("#email").val().trim(),
+            uniqueID: $("#uniqueID").val().trim()
+          };
+
+          alert(newReservation);
+          // Question: What does this code do??
+          $.post("/makereservation", newReservation)
+            .then(function(data) {
+              console.log(data);
+              alert("Adding character...");
+            });
+    
+        });
+    
+      </script>
 </body>
 </html>
