@@ -8,6 +8,10 @@ var PORT = 3000;
 
 // Routes
 // ===========================================================
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "view.html"));
+  });
+
 app.get("/makereservation", function(req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
@@ -26,6 +30,5 @@ var waiting = {};
 // Listener
 // ===========================================================
 app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+  console.log("App listening on PORT " + PORT);
 });
-
