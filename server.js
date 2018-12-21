@@ -1,6 +1,7 @@
 // Dependencies
 // ===========================================================
 var express = require("express");
+var path = require("path");
 
 var app = express();
 var PORT = 3000;
@@ -8,9 +9,9 @@ var PORT = 3000;
 // Routes
 // ===========================================================
 app.get("/makereservation", function(req, res) {
-    res.send("Welcome to the Star Wars Page!");
-  });
-  
+  res.sendFile(path.join(__dirname, "reserve.html"));
+});
+
 var reservations = {};
 var waiting = {};
 
@@ -19,6 +20,8 @@ var waiting = {};
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+var reservations = {};
+var waiting = {};
 
 // Listener
 // ===========================================================
